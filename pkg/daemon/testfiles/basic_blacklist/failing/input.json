@@ -12,10 +12,10 @@
 			"pod-template-hash": "7df6995f69"
 		},
 		"annotations": {
-			"katalog-sync.wish.com/service-names": "hw-service-name,servicename2",
+			"katalog-sync.wish.com/service-id-prefix": "env-hw-service-name",
+			"katalog-sync.wish.com/service-names": "hw-service-name",
 			"katalog-sync.wish.com/service-port": "8080",
 			"katalog-sync.wish.com/service-tags": "a,b",
-			"katalog-sync.wish.com/service-tags-servicename2": "b,c",
 			"katalog-sync.wish.com/container-exclude": "ignore-container",
 			"katalog-sync.wish.com/sync-interval": "2s",
 			"kubernetes.io/config.seen": "2019-02-11T15:53:55.238848124-08:00",

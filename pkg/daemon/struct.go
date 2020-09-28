@@ -24,6 +24,8 @@ var (
 	SyncInterval              = "katalog-sync.wish.com/sync-interval"     // How frequently we want to sync this service
 	ConsulServiceCheckTTL     = "katalog-sync.wish.com/service-check-ttl" // TTL for the service checks we put in consul
 	ContainerExclusion        = "katalog-sync.wish.com/container-exclude" // comma-separated list of containers to exclude from ready check
+	ConsulServiceIDPrefix     = "katalog-sync.wish.com/service-id-prefix" // ServiceID Prefix
+//	ConsulServiceCheckPath    = "katalog-sync.wish.com/service-check-path" // Service Check Path
 )
 
 // NewPod returns a daemon pod based on a config and a k8s pod
@@ -116,13 +118,27 @@ func (p *Pod) HasChange(service *consulApi.AgentService) bool {
 // GetServiceID returns an identifier that addresses this pod.
 func (p *Pod) GetServiceID(serviceName string) string {
 	// ServiceID is katalog-sync_service_namespace_pod
+	// return strings.Join([]string{
+	// 	"katalog-sync",
+	// 	serviceName,
+	// 	p.Pod.ObjectMeta.Namespace,
+	// 	p.Pod.ObjectMeta.Name,
+	// }, "_")
+	//can we try p.Pod.Status.PodIP to get the podip?
 	return strings.Join([]string{
-		"katalog-sync",
-		serviceName,
-		p.Pod.ObjectMeta.Namespace,
-		p.Pod.ObjectMeta.Name,
-	}, "_")
+		p.Pod.ObjectMeta.Annotations[ConsulServiceIDPrefix],
+		p.Pod.Status.PodIP,
+	}, "-")
 }
+
+// GetServiceCheckPath will get the health check path of service
+// func (p *Pod) GetServiceCheckPath() string {
+// 	if checkPath, ok := p.Pod.ObjectMeta.Annotations[ConsulServiceCheckPath]; ok {
+// 		return checkPath
+// 	}
+
+// 	return "/"
+// }
 
 // UpdatePod updates the k8s pod
 func (p *Pod) UpdatePod(k8sPod k8sApi.Pod) {

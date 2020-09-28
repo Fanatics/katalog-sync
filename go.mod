@@ -1,0 +1,47 @@
+module github.com/Fanatics/katalog-sync
+
+go 1.13
+
+require (
+	github.com/armon/go-metrics v0.0.0-20160717043458-3df31a1ada83
+	github.com/beorn7/perks v1.0.1
+	github.com/gogo/protobuf v1.2.0
+	github.com/golang/protobuf v1.3.2
+	github.com/google/gofuzz v1.0.0
+	github.com/hashicorp/consul v1.4.2
+	github.com/hashicorp/go-cleanhttp v0.0.0-20171218145408-d5fe4b57a186
+	github.com/hashicorp/go-rootcerts v0.0.0-20160503143440-6bb64b370b90
+	github.com/hashicorp/serf v0.8.2-0.20190122201206-65da6f27f6e5
+	github.com/jessevdk/go-flags v1.4.0
+	github.com/json-iterator/go v1.1.7
+	github.com/konsorten/go-windows-terminal-sequences v1.0.1
+	github.com/matttproud/golang_protobuf_extensions v1.0.1
+	github.com/mitchellh/go-homedir v1.1.0
+	github.com/mitchellh/mapstructure v1.1.1-0.20181001021442-5a380f224700
+	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd
+	github.com/modern-go/reflect2 v1.0.1
+	github.com/pkg/errors v0.8.1
+	github.com/prometheus/client_golang v1.1.0
+	github.com/prometheus/client_model v0.0.0-20190812154241-14fe0d1b01d4
+	github.com/prometheus/common v0.7.0
+	github.com/prometheus/procfs v0.0.5
+	github.com/sergi/go-diff v1.0.0
+	github.com/sirupsen/logrus v1.4.2
+	github.com/wish/katalog-sync v0.0.13
+	golang.org/x/crypto v0.0.0-20190308221718-c2843e01d9a2
+	golang.org/x/net v0.0.0-20190613194153-d28f0bde5980
+	golang.org/x/oauth2 v0.0.0-20190115181402-5dab4167f31c
+	golang.org/x/sys v0.0.0-20190801041406-cbf593c0f2f3
+	golang.org/x/text v0.3.0
+	golang.org/x/time v0.0.0-20181108054448-85acf8d2951c
+	google.golang.org/appengine v1.4.0
+	google.golang.org/genproto v0.0.0-20190128161407-8ac453e89fca
+	google.golang.org/grpc v1.18.0
+	gopkg.in/inf.v0 v0.9.0
+	gopkg.in/yaml.v2 v2.2.2
+	k8s.io/api v0.0.0-20181204000039-89a74a8d264d
+	k8s.io/apimachinery v0.0.0-20181127025237-2b1284ed4c93
+	k8s.io/client-go v10.0.0+incompatible
+	k8s.io/klog v0.1.0
+	sigs.k8s.io/yaml v1.1.0
+)

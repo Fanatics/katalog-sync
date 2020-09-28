@@ -146,6 +146,7 @@ func (d *Daemon) Register(ctx context.Context, in *katalogsync.RegisterQuery) (*
 		}
 		return synced
 	}); err != nil {
+		fmt.Println("LINE 149 in daemon.go!")
 		return nil, err
 	}
 
@@ -360,7 +361,7 @@ func (d *Daemon) syncConsul() error {
 				// only call update if we are past halflife of last update
 				if pod.SyncStatuses.GetStatus(serviceName).LastUpdated.IsZero() || time.Now().Sub(pod.SyncStatuses.GetStatus(serviceName).LastUpdated) >= (pod.CheckTTL/2) {
 					// If the service already exists, just update the check
-					pod.SyncStatuses.GetStatus(serviceName).SetError(d.consulClient.Agent().UpdateTTL(pod.GetServiceID(serviceName), string(notesB), status))
+					pod.SyncStatuses.GetStatus(serviceName).SetError(d.consulClient.Agent().UpdateTTL("service:"+pod.GetServiceID(serviceName), string(notesB), status))
 				}
 			} else {
 				// Define the base metadata that katalog-sync requires
@@ -388,8 +389,9 @@ func (d *Daemon) syncConsul() error {
 					Tags:    pod.GetTags(serviceName),
 
 					Check: &consulApi.AgentServiceCheck{
-						CheckID: pod.GetServiceID(serviceName), // TODO: better name? -- the name cannot have `/` in it -- its used in the API query path
-						TTL:     pod.CheckTTL.String(),
+						CheckID: "service:" + pod.GetServiceID(serviceName), // TODO: better name? -- the name cannot have `/` in it -- its used in the API query path
+						// HTTP:    fmt.Sprintf("http://%s:8080%s", pod.Status.PodIP, pod.GetServiceCheckPath()),
+						TTL: pod.CheckTTL.String(),
 
 						Status: status,         // Current status of check
 						Notes:  string(notesB), // Map of container->ready

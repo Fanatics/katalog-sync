@@ -12,7 +12,8 @@
 			"pod-template-hash": "5cbd9bb7fc"
 		},
 		"annotations": {
-			"katalog-sync.wish.com/service-names": "hw-service-name,servicename2",
+			"katalog-sync.wish.com/service-id-prefix": "env-hw-service-name",
+			"katalog-sync.wish.com/service-names": "hw-service-name",
 			"katalog-sync.wish.com/service-port": "8080",
 			"katalog-sync.wish.com/service-port-servicename2": "12345",
 			"katalog-sync.wish.com/service-tags": "a,b",
